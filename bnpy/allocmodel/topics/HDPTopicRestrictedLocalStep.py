@@ -2,7 +2,7 @@ import numpy as np
 import os
 
 from scipy.special import digamma, gammaln
-from bnpy.allocmodel import make_xPiVec_and_emptyPi
+from bnpy.allocmodel.mix.DPMixtureRestrictedLocalStep import make_xPiVec_and_emptyPi
 from bnpy.util import NumericUtil
 
 def summarizeRestrictedLocalStep_HDPTopicModel(
@@ -139,7 +139,7 @@ def restrictedLocalStep_HDPTopicModel(
         restrictedLocalStepForSingleDoc_Func = \
             restrictedLocalStepForSingleDoc_HDPTopicModel
     else:
-        print 'SLOW<<<!!'
+        print('SLOW<<<!!')
         restrictedLocalStepForSingleDoc_Func = \
             restrictedLocalStepForSingleDoc_HDPTopicModel_SlowerButStable
 
@@ -300,8 +300,8 @@ def restrictedLocalStepForSingleDoc_HDPTopicModel(
         xLPslice['_maxDiff'][d] = maxDiff_d
         # Make proposal resp for relevant atoms in current doc d
         if np.any(np.isnan(xDocTopicCount_d)):
-            print 'WHOA! NaN ALERT'
-            # Edge case! Common only when deleting... 
+            print('WHOA! NaN ALERT')
+            # Edge case! Common only when deleting...
             # Recover from numerical issues in coord ascent
             # by falling back to likelihood only to make resp
             xResp_d = xCLik_d

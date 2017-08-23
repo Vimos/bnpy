@@ -33,8 +33,9 @@ dataset = bnpy.data.XData.read_csv(
 # Make a simple plot of the raw data
 
 pylab.plot(dataset.X[:, 0], dataset.X[:, 1], 'k.')
-pylab.xlabel(dataset.column_names[0])
-pylab.ylabel(dataset.column_names[1])
+column_names = list(dataset.column_names)
+pylab.xlabel(column_names[0])
+pylab.ylabel(column_names[1])
 pylab.tight_layout()
 data_ax_h = pylab.gca()
 
@@ -126,7 +127,7 @@ diag_trained_model, diag_info_dict = bnpy.run(
     gamma0=gamma, sF=sF, ECovMat='eye',
     K=K, initname='randexamplesbydist',
     moves='merge,delete,shuffle',
-    **dict(delete_kwargs.items() + merge_kwargs.items()))
+    **dict(list(delete_kwargs.items()) + list(merge_kwargs.items())))
 
 show_clusters_over_time(diag_info_dict['task_output_path'])
 
@@ -147,7 +148,7 @@ full_trained_model, full_info_dict = bnpy.run(
     gamma0=gamma, sF=sF, ECovMat='eye',
     K=K, initname='randexamplesbydist',
     moves='merge,delete,shuffle',
-    **dict(delete_kwargs.items() + merge_kwargs.items()))
+    **dict(list(delete_kwargs.items()) + list(merge_kwargs.items())))
 
 show_clusters_over_time(full_info_dict['task_output_path'])
 

@@ -18,7 +18,7 @@ Options
     ids of the tasks (individual runs) of the given job to plot.
     Ex: "1" or "3" or "1,2,3" or "1-6"
 '''
-from PlotUtil import pylab
+from .PlotUtil import pylab
 import numpy as np
 import argparse
 import os
@@ -183,12 +183,12 @@ def printTopWordsFromWordCounts(
         order = np.arange(K)
     N = np.sum(WordCounts, axis=1)
     for posID, k in enumerate(order):
-        print '----- %s %d. count %5d.' % (prefix, k, N[k])
+        print('----- %s %d. count %5d.' % (prefix, k, N[k]))
 
         topIDs = np.argsort(-1 * WordCounts[k])
         for wID in topIDs[:Ktop]:
             if WordCounts[k, wID] > 0:
-                print '%3d %s' % (WordCounts[k, wID], vocabList[wID])
+                print('%3d %s' % (WordCounts[k, wID], vocabList[wID]))
 
 
 def printTopWordsFromTopics(
@@ -198,14 +198,15 @@ def printTopWordsFromTopics(
     if ktarget is not None:
         topIDs = np.argsort(-1 * topics[ktarget])
         for wID in topIDs[:Ktop]:
-            print '%.3f %s' % (topics[ktarget, wID], vocabList[wID])
+            print('%.3f %s' % (topics[ktarget, wID], vocabList[wID]))
         return
     # Base case: print all topics
     for k in xrange(K):
-        print '----- %s %d' % (prefix, k)
+        print('----- %s %d' % (prefix, k))
         topIDs = np.argsort(-1 * topics[k])
         for wID in topIDs[:Ktop]:
-            print '%.3f %s' % (topics[k, wID], vocabList[wID])
+            print('%.3f %s' % (topics[k, wID], vocabList[wID]))
+
 
 def plotCompsFromHModel(hmodel, **kwargs):
     ''' Create subplots of top 10 words from each topic, from a trained model.
@@ -257,8 +258,8 @@ def plotCompsFromWordCounts(
         compListToPlot = np.arange(0, K)
     Kplot = np.minimum(len(compListToPlot), Kmax)
     if len(compListToPlot) > Kmax:
-        print 'DISPLAY LIMIT EXCEEDED. Showing %d/%d components' \
-            % (Kplot, len(compListToPlot))
+        print('DISPLAY LIMIT EXCEEDED. Showing %d/%d components'
+              % (Kplot, len(compListToPlot)))
     compListToPlot = compListToPlot[:Kplot]
     # Parse comps to highlight
     compsToHighlight = np.asarray(compsToHighlight)
@@ -439,4 +440,4 @@ if __name__ == "__main__":
                               doHTML=args.doHTML,
                               maxKToDisplay=args.maxKToDisplay)
     if htmlstr is not None:
-        print htmlstr
+        print(htmlstr)

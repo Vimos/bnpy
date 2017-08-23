@@ -1,10 +1,11 @@
 import copy
 import numpy as np
 import logging
+from six.moves import range as xrange
 
-import HMMUtil
-from HDPHMMUtil import ELBOTermDimMap, calcELBO
-from HDPHMMUtil import calcELBO_LinearTerms, calcELBO_NonlinearTerms
+from . import HMMUtil
+from .HDPHMMUtil import ELBOTermDimMap, calcELBO
+from .HDPHMMUtil import calcELBO_LinearTerms, calcELBO_NonlinearTerms
 
 from bnpy.allocmodel import AllocModel
 from bnpy.suffstats import SuffStatBag

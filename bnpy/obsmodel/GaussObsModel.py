@@ -1,3 +1,4 @@
+from six.moves import xrange
 import numpy as np
 import scipy.linalg
 from scipy.special import gammaln, digamma
@@ -8,7 +9,7 @@ from bnpy.util import dotATA, dotATB, dotABT
 from bnpy.util import as1D, as2D, as3D, toCArray
 from bnpy.util import numpyToSharedMemArray, fillSharedMemArray
 from bnpy.util.SparseRespStatsUtil import calcSpRXXT
-from AbstractObsModel import AbstractObsModel
+from .AbstractObsModel import AbstractObsModel
 
 
 class GaussObsModel(AbstractObsModel):
@@ -85,7 +86,7 @@ class GaussObsModel(AbstractObsModel):
                 m = np.zeros(D)
         elif m.ndim < 1:
             m = np.asarray([m], dtype=np.float)
-        kappa = np.maximum(kappa, 1e-8)
+        kappa = np.maximum(kappa or 0, 1e-8)
         self.Prior = ParamBag(K=0, D=D)
         self.Prior.setField('nu', nu, dims=None)
         self.Prior.setField('kappa', kappa, dims=None)

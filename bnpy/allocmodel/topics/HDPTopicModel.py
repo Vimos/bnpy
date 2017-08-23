@@ -1,14 +1,14 @@
 import numpy as np
 import logging
 
-import LocalStepManyDocs
-import OptimizerRhoOmegaBetter
+from . import LocalStepManyDocs
+from . import OptimizerRhoOmegaBetter
 
-from HDPTopicUtil import calcELBO
-from HDPTopicUtil import calcELBO_LinearTerms, calcELBO_NonlinearTerms
-from HDPTopicUtil import calcHrespForMergePairs, calcHrespForSpecificMergePairs
-from HDPTopicUtil import calcMergeTermsFromSeparateLP
-from HDPTopicUtil import L_alloc
+from .HDPTopicUtil import calcELBO
+from .HDPTopicUtil import calcELBO_LinearTerms, calcELBO_NonlinearTerms
+from .HDPTopicUtil import calcHrespForMergePairs, calcHrespForSpecificMergePairs
+from .HDPTopicUtil import calcMergeTermsFromSeparateLP
+from .HDPTopicUtil import L_alloc
 
 from bnpy.allocmodel.AllocModel import AllocModel
 from bnpy.allocmodel.mix.DPMixtureModel import convertToN0

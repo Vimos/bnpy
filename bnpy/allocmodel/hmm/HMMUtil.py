@@ -7,6 +7,8 @@ such as the forward-backward algorithm
 Intentionally separated from rest of HMM code, so that we can swap in
 any fast routine for this calculation with ease.
 '''
+from six.moves import range as xrange
+
 import numpy as np
 from bnpy.util import EPS
 from bnpy.util import digamma, gammaln
@@ -15,7 +17,7 @@ from bnpy.util.NumericUtil import sumRtimesS
 from bnpy.util.NumericUtil import inplaceLog
 from bnpy.util import as2D
 
-from lib.LibFwdBwd import cppReady, FwdAlg_cpp, BwdAlg_cpp, SummaryAlg_cpp
+from .lib.LibFwdBwd import cppReady, FwdAlg_cpp, BwdAlg_cpp, SummaryAlg_cpp
 
 def calcLocalParams(Data, LP,
                     transTheta=None, startTheta=None,

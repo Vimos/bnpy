@@ -4,7 +4,7 @@ Implementation of parallel memoized variational algorithm for bnpy models.
 import numpy as np
 import multiprocessing
 import os
-import ElapsedTimeLogger 
+from . import ElapsedTimeLogger
 import scipy.sparse
 
 from collections import defaultdict
@@ -22,8 +22,8 @@ from bnpy.mergemove import selectCandidateMergePairs
 from bnpy.deletemove import DLogger, selectCandidateDeleteComps
 from bnpy.util import argsort_bigtosmall_stable
 from bnpy.util.SparseRespUtil import sparsifyResp
-from LearnAlg import makeDictOfAllWorkspaceVars
-from LearnAlg import LearnAlg
+from .LearnAlg import makeDictOfAllWorkspaceVars
+from .LearnAlg import LearnAlg
 from bnpy.viz.PrintTopics import count2str
 
 # If abs val of two ELBOs differs by less than this small constant
@@ -448,9 +448,7 @@ class MemoVBMovesAlg(LearnAlg):
         '''
         batchLP = dict(**batchLP) # make a copy
         allkeys = batchLP.keys()
-        for key in allkeys:
-            if key not in self.memoLPkeys:
-                del batchLP[key]
+        batchLP = {key: batchLP[key] for key in allkeys if key in self.memoLPkeys}
         if len(batchLP.keys()) > 0:
             if self.algParams['doMemoizeLocalParams'] == 1:
                 self.LPmemory[batchID] = batchLP
@@ -1441,9 +1439,7 @@ class MemoVBMovesAlg(LearnAlg):
                 lapFrac, nAccept, nTrial, Ndiff)
             DLogger.pprint(msg, 'info')
         # Discard plans, because they have come to fruition.
-        for key in MovePlans.keys():
-            if key.startswith('d_'):
-                del MovePlans[key]
+        MovePlans = {key: MovePlans[key] for key in MovePlans.keys() if key.startswith('d_')}
         ElapsedTimeLogger.stopEvent('delete', 'eval')
         return hmodel, SS, loss, MoveLog, MoveRecordsByUID
 
@@ -1612,8 +1608,8 @@ class MemoVBMovesAlg(LearnAlg):
         evCheck = hmodel.calc_evidence(SS=SS2)
 
         if self.algParams['debug'].count('quiet') == 0:
-            print '% 14.8f evBound from agg SS' % (evBound)
-            print '% 14.8f evBound from sum over SSmemory' % (evCheck)
+            print('% 14.8f evBound from agg SS' % (evBound))
+            print('% 14.8f evBound from sum over SSmemory' % (evCheck))
         if self.algParams['debug'].count('interactive'):
             isCorrect = np.allclose(SS.getCountVec(), SS2.getCountVec()) \
                 and np.allclose(evBound, evCheck)

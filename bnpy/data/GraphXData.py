@@ -12,7 +12,7 @@ import scipy.io
 from scipy.sparse import csc_matrix
 
 from bnpy.util import as1D, as2D, as3D, toCArray
-from XData import XData
+from .XData import XData
 
 class GraphXData(XData):
 

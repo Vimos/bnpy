@@ -4,7 +4,7 @@ BernViz.py
 Visualization tools for beta-bernoulli observation models.
 '''
 import numpy as np
-from PlotUtil import pylab
+from .PlotUtil import pylab
 
 imshowArgs = dict(interpolation='nearest',
                   cmap='bone',
@@ -92,8 +92,8 @@ def plotCompsAsSquareImages(phi,
 
     for plotID, compID in enumerate(compListToPlot):
         if plotID >= Kmax:
-            print 'DISPLAY LIMIT EXCEEDED. Showing %d/%d components' \
-                % (plotID, len(activeCompIDs))
+            print('DISPLAY LIMIT EXCEEDED. Showing %d/%d components'
+                  % (plotID, len(activeCompIDs)))
             break
 
         if compID not in activeCompIDs:

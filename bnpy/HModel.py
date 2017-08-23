@@ -22,9 +22,9 @@ import numpy as np
 import os
 import copy
 
-import init
-from allocmodel import AllocModelConstructorsByName
-from obsmodel import ObsModelConstructorsByName
+from . import init
+from .allocmodel import AllocModelConstructorsByName
+from .obsmodel import ObsModelConstructorsByName
 from bnpy.learnalg import ElapsedTimeLogger
 
 class HModel(object):
@@ -47,6 +47,8 @@ class HModel(object):
         '''
         AllocConstr = AllocModelConstructorsByName[allocModelName]
         allocModel = AllocConstr(inferType, allocPriorDict)
+        if not obsModelName.endswith('ObsModel'):
+            obsModelName = obsModelName + 'ObsModel'
         ObsConstr = ObsModelConstructorsByName[obsModelName]
         obsModel = ObsConstr(inferType, Data=Data, **obsPriorDict)
         return cls(allocModel, obsModel)

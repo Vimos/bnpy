@@ -1,4 +1,5 @@
 import numpy as np
+from six.moves import xrange
 import scipy.linalg
 from scipy.special import gammaln, digamma
 
@@ -8,8 +9,8 @@ from bnpy.util import dotATA, dotATB, dotABT
 from bnpy.util import as1D, as2D, toCArray, np2flatstr
 from bnpy.util import numpyToSharedMemArray, fillSharedMemArray
 from bnpy.util.SparseRespStatsUtil import calcRXX_withDenseResp, calcSpRXX
-from AbstractObsModel import AbstractObsModel
-from GaussObsModel import createECovMatFromUserInput
+from .AbstractObsModel import AbstractObsModel
+from .GaussObsModel import createECovMatFromUserInput
 
 class DiagGaussObsModel(AbstractObsModel):
 

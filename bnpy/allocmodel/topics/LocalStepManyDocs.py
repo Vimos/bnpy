@@ -1,3 +1,4 @@
+from six.moves import xrange
 import numpy as np
 import copy
 import time
@@ -5,10 +6,10 @@ import time
 from scipy.special import digamma, gammaln
 import scipy.sparse
 
-import LocalStepLogger
+from . import LocalStepLogger
 from bnpy.util import NumericUtil
-from LocalStepSingleDoc import calcLocalParams_SingleDoc
-from LocalStepSingleDoc import calcLocalParams_SingleDoc_WithELBOTrace
+from .LocalStepSingleDoc import calcLocalParams_SingleDoc
+from .LocalStepSingleDoc import calcLocalParams_SingleDoc_WithELBOTrace
 
 from bnpy.util.SparseRespUtil \
     import fillInDocTopicCountFromSparseResp, sparsifyResp, sparsifyLogResp

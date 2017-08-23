@@ -334,7 +334,7 @@ def find_optimum(
         approx_grad=approx_grad,
         disp=None,
         )
-    fminPossibleKwargs = set(scipy.optimize.fmin_l_bfgs_b.func_code.co_varnames)
+    fminPossibleKwargs = set(scipy.optimize.fmin_l_bfgs_b.__code__.co_varnames)
     for key in kwargs:
         if key in fminPossibleKwargs:
             fminKwargs[key] = kwargs[key]

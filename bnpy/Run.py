@@ -24,10 +24,11 @@ import os
 import sys
 import logging
 import numpy as np
-import bnpy
 import inspect
 import time
+import bnpy
 
+from bnpy.HModel import HModel
 from bnpy.ioutil import BNPYArgParser
 from bnpy.ioutil.BNPYArgParser import FullDataAlgSet, OnlineDataAlgSet
 
@@ -381,7 +382,7 @@ def make_initialized_model(
     if initArgsDict is None:
         initArgsDict = KwArgs['Initialization']
 
-    hmodel = bnpy.HModel.CreateEntireModel(
+    hmodel = HModel.CreateEntireModel(
         algName, allocModelName, obsModelName,
         allocPriorArgsDict, obsPriorArgsDict, Data)
     if verbose:
@@ -487,7 +488,7 @@ def createUniqueRandomSeed(jobname, taskID=0):
     if len(jobname) > 5:
         jobname = jobname[:5]
 
-    seed = int(hashlib.md5(jobname + str(taskID)).hexdigest(), 16) % 1e7
+    seed = int(hashlib.md5((jobname + str(taskID)).encode('utf-8')).hexdigest(), 16) % 1e7
     return int(seed)
 
 

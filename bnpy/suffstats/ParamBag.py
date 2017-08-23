@@ -52,7 +52,7 @@ class ParamBag(object):
         '''
         self.K = K
         self.D = 0
-        for key, val in kwargs.iteritems():
+        for key, val in kwargs.items():
             setattr(self, key, val)
         self._FieldDims = dict()
         self.doCollapseK1 = doCollapseK1

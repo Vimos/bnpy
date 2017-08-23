@@ -5,11 +5,12 @@ GroupXData
     Data object for holding a dense matrix X of real 64-bit floats,
     organized contiguously based on provided group structure.
 '''
+from six.moves import xrange
 
 import numpy as np
 from collections import namedtuple
 
-from XData import XData
+from .XData import XData
 from bnpy.util import as1D, as2D, as3D, toCArray
 from bnpy.util import numpyToSharedMemArray, sharedMemToNumpyArray
 

@@ -8,7 +8,7 @@ from bnpy.util import dotATA, dotATB, dotABT
 from bnpy.util import as1D, as2D, as3D
 from bnpy.util import numpyToSharedMemArray, sharedMemToNumpyArray
 
-from AbstractObsModel import AbstractObsModel
+from .AbstractObsModel import AbstractObsModel
 
 nx = np.newaxis
 

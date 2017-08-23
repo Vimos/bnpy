@@ -6,6 +6,7 @@ such as human annotations
 
 These are provided within the Data object's TrueParams attribute.
 '''
+from six.moves import xrange
 import numpy as np
 
 
@@ -244,8 +245,8 @@ def dropWordsFromLP(Data, LP,
         mask = Data.word_id == v
         resp[mask, initTargetCompID] = 1e-100
 
-    print 'initDropWordIDs:',
-    print '   ', initDropWordIDs
+    print('initDropWordIDs:', end=' ')
+    print('   ', initDropWordIDs)
 
     LP['resp'] = resp
     return LP

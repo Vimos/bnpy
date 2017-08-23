@@ -57,9 +57,10 @@ def cleanupMergeClusters(
     reqFields = set()
     for key in obsSSkeys:
         reqFields.add(key)
-    for key in xSSslice._Fields._FieldDims.keys():
-        if key not in reqFields:
-            xSSslice.removeField(key)
+
+    keys = list(filter(lambda key: key not in reqFields, xSSslice._Fields._FieldDims.keys()))
+    for key in keys:
+        xSSslice.removeField(key)
 
     # For merges, we can crank up value of the topic-word prior hyperparameter,
     # to prioritize only care big differences in word counts across many terms

@@ -1,6 +1,6 @@
 import copy
 import numpy as np
-from ParamBag import ParamBag
+from .ParamBag import ParamBag
 
 
 class SuffStatBag(object):

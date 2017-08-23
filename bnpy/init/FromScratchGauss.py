@@ -4,12 +4,12 @@ FromScratchGauss.py
 Initialize global params of a Gaussian-family data-generation model,
 from scratch.
 '''
-
+from six.moves import xrange
 import numpy as np
 from bnpy.data import XData
 from bnpy.suffstats import SuffStatBag
 from scipy.cluster.vq import kmeans2
-from FromTruth import convertLPFromHardToSoft
+from .FromTruth import convertLPFromHardToSoft
 
 def init_global_params(obsModel, Data, K=0, seed=0,
                        initname='randexamples',

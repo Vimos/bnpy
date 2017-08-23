@@ -1,6 +1,6 @@
 import numpy as np
 
-import HMMUtil
+from . import HMMUtil
 from bnpy.allocmodel import AllocModel
 from bnpy.suffstats import SuffStatBag
 from bnpy.util import digamma, gammaln, as2D

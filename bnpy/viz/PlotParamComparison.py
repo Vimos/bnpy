@@ -29,14 +29,14 @@ import os
 import scipy.io
 import copy
 
-from PlotUtil import pylab
-import TaskRanker
+from .PlotUtil import pylab
+from . import TaskRanker
 
 from bnpy.ioutil import BNPYArgParser
-from JobFilter import makeListOfJPatternsWithSpecificVals
-from JobFilter import makePPListMapFromJPattern
-from JobFilter import makeJPatternWithSpecificVals
-from TaskRanker import rankTasksForSingleJobOnDisk
+from .JobFilter import makeListOfJPatternsWithSpecificVals
+from .JobFilter import makePPListMapFromJPattern
+from .JobFilter import makeJPatternWithSpecificVals
+from .TaskRanker import rankTasksForSingleJobOnDisk
 
 
 taskidsHelpMsg = "ids of trials/runs to plot from given job." + \

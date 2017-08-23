@@ -11,13 +11,14 @@ Library of efficient vectorized implementations of
 * calcRlogR_specificpairs
 
 '''
+from six.moves import range as xrange
 import os
-import ConfigParser
+from configparser import ConfigParser
 import numpy as np
 import scipy.sparse
 import timeit
 
-from EntropyUtil import calcRlogR, calcRlogRdotv
+from .EntropyUtil import calcRlogR, calcRlogRdotv
 
 def LoadConfig():
     global Config, cfgfilepath
@@ -40,7 +41,7 @@ def readConfigFileIntoDict(confFile, targetSecName=None):
     --------
     dict : dictionary of key-values for each configuration options
     '''
-    config = ConfigParser.SafeConfigParser()
+    config = ConfigParser()
     config.optionxform = str
     config.read(confFile)
     for secName in config.sections():
@@ -377,13 +378,13 @@ def autoconfigure():
             expectedGainFactor = runTiming_calcRlogR()
         elif mName == 'calcRlogRdotv':
             expectedGainFactor = runTiming_calcRlogRdotv()
-        print mName,
+        print(mName, end=' ')
         if expectedGainFactor > 1.05:
             config.set('LibraryPrefs', mName, 'numexpr')
-            print "numexpr preferred: %.2f X faster" % (expectedGainFactor)
+            print("numexpr preferred: %.2f X faster" % (expectedGainFactor))
         else:
             config.set('LibraryPrefs', mName, 'numpy')
-            print "numpy preferred: %.2f X faster" % (expectedGainFactor)
+            print("numpy preferred: %.2f X faster" % (expectedGainFactor))
         with open(cfgfilepath, 'w') as f:
             config.write(f)
     LoadConfig()
@@ -447,7 +448,7 @@ if hasNumexpr and 'OMP_NUM_THREADS' in os.environ:
         nThreads = int(os.environ['OMP_NUM_THREADS'])
         ne.set_num_threads(nThreads)
     except TypeError as ValueError:
-        print 'Unrecognized OMP_NUM_THREADS', os.environ['OMP_NUM_THREADS']
+        print('Unrecognized OMP_NUM_THREADS', os.environ['OMP_NUM_THREADS'])
         pass
 
 LoadConfig()

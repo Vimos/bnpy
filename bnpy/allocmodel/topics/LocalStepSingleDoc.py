@@ -1,4 +1,5 @@
 from scipy.special import digamma, gammaln
+from six.moves import xrange
 import numpy as np
 import warnings
 

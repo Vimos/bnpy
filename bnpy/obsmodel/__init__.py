@@ -1,12 +1,12 @@
-from DiagGaussObsModel import DiagGaussObsModel
-from GaussObsModel import GaussObsModel
-from ZeroMeanGaussObsModel import ZeroMeanGaussObsModel
-from AutoRegGaussObsModel import AutoRegGaussObsModel
-from MultObsModel import MultObsModel
-from BernObsModel import BernObsModel
-from GaussRegressYFromFixedXObsModel \
+from .DiagGaussObsModel import DiagGaussObsModel
+from .GaussObsModel import GaussObsModel
+from .ZeroMeanGaussObsModel import ZeroMeanGaussObsModel
+from .AutoRegGaussObsModel import AutoRegGaussObsModel
+from .MultObsModel import MultObsModel
+from .BernObsModel import BernObsModel
+from .GaussRegressYFromFixedXObsModel \
 	import GaussRegressYFromFixedXObsModel
-from GaussRegressYFromDiagGaussXObsModel \
+from .GaussRegressYFromDiagGaussXObsModel \
 	import GaussRegressYFromDiagGaussXObsModel
 
 ObsModelConstructorsByName = {
@@ -23,8 +23,8 @@ ObsModelConstructorsByName = {
 # Make constructor accessible by nickname and fullname
 # Nickname = 'Gauss'
 # Fullname = 'GaussObsModel'
-for val in ObsModelConstructorsByName.values():
-    fullname = str(val.__name__)
-    ObsModelConstructorsByName[fullname] = val
-
+# for val in ObsModelConstructorsByName.values():
+#     fullname = str(val.__name__)
+#     ObsModelConstructorsByName[fullname] = val
+ObsModelConstructorsByName = {str(val.__name__): val for val in ObsModelConstructorsByName.values()}
 ObsModelNameSet = set(ObsModelConstructorsByName.keys())

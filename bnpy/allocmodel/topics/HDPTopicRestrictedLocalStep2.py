@@ -1,8 +1,9 @@
+from six.moves import xrange
 import numpy as np
 
 from scipy.special import digamma, gammaln
 from bnpy.util import NumericUtil
-from bnpy.allocmodel import make_xPiVec_and_emptyPi
+from bnpy.allocmodel.mix.DPMixtureRestrictedLocalStep import make_xPiVec_and_emptyPi
 
 
 def calcDocTopicCountCorrelationFromTargetToAbsorbingSet(

@@ -1,7 +1,7 @@
 '''
 Bayesian nonparametric mixture model with Dirichlet process prior.
 '''
-
+from six.moves import range as xrange
 import numpy as np
 
 from bnpy.allocmodel import AllocModel
@@ -842,8 +842,8 @@ class DPMixtureModel(AllocModel):
             psum = np.sum(pvec)
 
             if np.isnan(psum) or psum <= 0:
-                print pvec
-                print psum
+                print(pvec)
+                print(psum)
                 raise ValueError('BAD VALUES FOR PROBS!')
 
             pvec /= psum
@@ -856,7 +856,7 @@ class DPMixtureModel(AllocModel):
             Z[dataindex] = knew
 
         LP['Z'] = Z
-        print ' '.join(['%.1f' % (x) for x in SS.N])
+        print(' '.join(['%.1f' % (x) for x in SS.N]))
         return LP, SS
 
     def getConditionalProbVec_Unnorm(self, SS, doKeepFinalCompEmpty):

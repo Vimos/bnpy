@@ -2,22 +2,22 @@ import numpy as np
 import os
 import sys
 import bnpy.init.FromTruth
-import BLogger
+from . import BLogger
 
 from scipy.special import digamma, gammaln
 
 from bnpy.allocmodel.topics.HDPTopicRestrictedLocalStep \
     import summarizeRestrictedLocalStep_HDPTopicModel
 
-from BCleanup import cleanupMergeClusters, cleanupDeleteSmallClusters
-from BirthProposalError import BirthProposalError
+from .BCleanup import cleanupMergeClusters, cleanupDeleteSmallClusters
+from .BirthProposalError import BirthProposalError
 from bnpy.viz.PlotComps import plotCompsFromSS
 from bnpy.viz.ProposalViz import plotELBOtermsForProposal
 from bnpy.viz.ProposalViz import plotDocUsageForProposal
 from bnpy.viz.ProposalViz import makeSingleProposalHTMLStr
 from bnpy.viz.PrintTopics import vec2str
 
-from BRestrictedLocalStep import \
+from .BRestrictedLocalStep import \
     summarizeRestrictedLocalStep, \
     makeExpansionSSFromZ
 

@@ -5,7 +5,7 @@ BagOfWordsData
     Data object for holding a sparse bag-of-word observations,
     organized as a collection of documents, each containing some words.
 """
-
+from six.moves import xrange
 import numpy as np
 import scipy.sparse
 import scipy.io
@@ -65,7 +65,7 @@ class BagOfWordsData(DataObj):
         -------
         Data : BagOfWordsData object
         '''
-        npz_dict = dict(**np.load(npzfilepath))
+        npz_dict = dict(**np.load(npzfilepath, encoding='bytes'))
         if nDocTotal is not None:
             npz_dict['nDocTotal'] = nDocTotal
         if vocab_size is not None:
@@ -516,7 +516,8 @@ class BagOfWordsData(DataObj):
         Removes all attributes matching "__[A-Za-z]Mat",
         such as "__DocTypeCountMat"
         '''
-        for key in self.__dict__.keys():
+        keys = list(self.__dict__.keys())
+        for key in keys:
             if key.startswith("__") and key.endswith("Mat"):
                 delattr(self, key)
 

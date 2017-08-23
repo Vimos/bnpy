@@ -1,6 +1,6 @@
 import numpy as np
 
-import LocalStepManyDocs
+from . import LocalStepManyDocs
 
 from bnpy.allocmodel.AllocModel import AllocModel
 from bnpy.suffstats import SuffStatBag

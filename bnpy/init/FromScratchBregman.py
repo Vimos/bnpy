@@ -3,12 +3,13 @@ FromScratchBregman.py
 
 Initialize suff stats for observation models via Bregman clustering.
 '''
+from six.moves import xrange
 import re
 import numpy as np
 import bnpy.data
 
 from bnpy.util import split_str_into_fixed_width_lines
-from FromTruth import \
+from .FromTruth import \
     convertLPFromHardToSoft, \
     convertLPFromTokensToDocs, \
     convertLPFromDocsToTokens, \
@@ -45,7 +46,8 @@ def init_global_params(hmodel, Data, **kwargs):
 
             if 'logFunc' not in kwargs:
                 def logFunc(msg):
-                    print msg
+                    print(msg)
+
                 kwargs['logFunc'] = logFunc
 
     '''
@@ -282,7 +284,7 @@ def runKMeans_BregmanDiv(
                 if logFunc:
                     logFunc(msg)
                 else:
-                    print msg
+                    print(msg)
                 assert np.all(np.diff(Lscores) <= 1e-5)
 
         N = np.zeros(K)

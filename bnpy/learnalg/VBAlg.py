@@ -1,6 +1,7 @@
+from six.moves import xrange
 import numpy as np
 
-from LearnAlg import LearnAlg, makeDictOfAllWorkspaceVars
+from .LearnAlg import LearnAlg, makeDictOfAllWorkspaceVars
 
 
 class VBAlg(LearnAlg):
